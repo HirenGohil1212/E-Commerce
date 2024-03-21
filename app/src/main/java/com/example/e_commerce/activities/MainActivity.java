@@ -6,8 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.os.Bundle;
 import com.example.e_commerce.R;
 import com.example.e_commerce.adapters.CategoryAdapter;
+import com.example.e_commerce.adapters.ProductAdapter;
 import com.example.e_commerce.databinding.ActivityMainBinding;
 import com.example.e_commerce.model.Category;
+import com.example.e_commerce.model.Product;
+
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
+
 import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
@@ -15,14 +20,31 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     ArrayList<Category> categories;
 
+
+    ProductAdapter productAdapter;
+    ArrayList<Product> products;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initCategories();
+        initProducts();
+        initSlider();
+    }
+
+    private void initSlider() {
+        binding.carousel.addData(new CarouselItem("",""));
+        binding.carousel.addData(new CarouselItem("",""));
+        binding.carousel.addData(new CarouselItem("",""));
+
+    }
+
+    void initCategories(){
         categories = new ArrayList<>();
-        categories.add(new Category("Organic Vegetables","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fvegetable_10107601&psig=AOvVaw2_uE_mwdk_I_jLwq87mlex&ust=1711095837249000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPDWz-j2hIUDFQAAAAAdAAAAABAE","#18ab4e","Some Palak and Methi",1));
+        categories.add(new Category("Organic Vegetables","","","Some Palak and Methi",1));
         categories.add(new Category("Organic Vegetables","","#18ab4e","Some Palak and Methi",1));
         categories.add(new Category("Organic Vegetables","","#18ab4e","Some Palak and Methi",1));
         categories.add(new Category("OrganicVeg etables","","#18ab4e","Some Palak and Methi",1));
@@ -33,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
         binding.categoriesList.setLayoutManager(layoutManager);
         binding.categoriesList.setAdapter(categoryAdapter);
+    }
+
+    void initProducts(){
+        products = new ArrayList<>();
+        products.add(new Product("Methi From Surat","","",12,12,1,1));
+        products.add(new Product("Methi From Surat","","",12,12,1,1));
+        products.add(new Product("Methi From Surat","","",12,12,1,1));
+        products.add(new Product("Methi From Surat","","",12,12,1,1));
+        productAdapter = new ProductAdapter(this, products);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        binding.productList.setLayoutManager(layoutManager);
+        binding.productList.setAdapter(productAdapter);
+
 
 
 
