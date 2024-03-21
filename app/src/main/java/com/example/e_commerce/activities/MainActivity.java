@@ -2,17 +2,13 @@ package com.example.e_commerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import android.os.Bundle;
-import com.example.e_commerce.R;
 import com.example.e_commerce.adapters.CategoryAdapter;
 import com.example.e_commerce.adapters.ProductAdapter;
 import com.example.e_commerce.databinding.ActivityMainBinding;
 import com.example.e_commerce.model.Category;
 import com.example.e_commerce.model.Product;
-
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
-
 import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
