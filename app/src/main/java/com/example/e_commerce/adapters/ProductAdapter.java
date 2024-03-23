@@ -25,7 +25,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ProductAdapter(Context context, ArrayList<Product> products){
         this.context = context;
         this.products = products;
-
     }
 
     @NonNull
@@ -52,11 +51,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 intent.putExtra("image", product.getImage());
                 intent.putExtra("id", product.getId());
                 intent.putExtra("price", product.getPrice());
-
                 context.startActivity(intent);
-
-
-
 
             }
         });
@@ -71,12 +66,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
-
-
         ItemProductBinding binding;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-
             binding = ItemProductBinding.bind(itemView);
 
         }

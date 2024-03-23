@@ -1,12 +1,26 @@
 package com.example.e_commerce.model;
 
-public class Product {
+import com.hishd.tinycart.model.Item;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class Product implements Item, Serializable {
 
     private String name, image, status;
     private double price, discount;
     private int stock, id;
+    private int quantity;
 
-    public Product(String name, String image, String status, double price, double discount, int stock, int id) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Product(String name, String image, String status, double price, double discount, int stock, int id, int quantity) {
         this.name = name;
         this.image = image;
         this.status = status;
@@ -14,6 +28,7 @@ public class Product {
         this.discount = discount;
         this.stock = stock;
         this.id = id;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -70,5 +85,15 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public BigDecimal getItemPrice() {
+        return new BigDecimal(price);
+    }
+
+    @Override
+    public String getItemName() {
+        return name;
     }
 }

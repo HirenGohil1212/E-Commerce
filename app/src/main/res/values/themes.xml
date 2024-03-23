@@ -9,7 +9,7 @@
 
     </style>
 
-<!--    Secondary Theme-->
+     <!--    Secondary Theme-->
 
     <style name="Base.Theme.ECommerce.Actionbar" parent="Theme.MaterialComponents.DayNight.DarkActionBar" >
         <!-- Customize your light theme here. -->
