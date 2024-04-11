@@ -2,7 +2,9 @@ package com.example.e_commerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import com.example.e_commerce.adapters.CartAdapter;
 import com.example.e_commerce.databinding.ActivityCartBinding;
 import com.example.e_commerce.model.Product;
@@ -15,7 +17,6 @@ import java.util.Map;
 public class CartActivity extends AppCompatActivity {
     ActivityCartBinding binding;
     CartAdapter adapter;
-
     ArrayList<Product> products;
 
     @Override
@@ -33,18 +34,13 @@ public class CartActivity extends AppCompatActivity {
             Product product = (Product) item.getKey();
             int quantity = item.getValue();
             product.setQuantity(quantity);
-
             products.add(product);
-
-
         }
-
 
 
         products.add(new Product("Product 1","---","123",45,45,45,1,10));
         products.add(new Product("Product 2","---","123",45,45,45,1,10));
         products.add(new Product("Product 3","---","123",45,45,45,1,10));
-
 
 
         adapter = new CartAdapter(this, products, new CartAdapter.CartListener() {
@@ -56,15 +52,18 @@ public class CartActivity extends AppCompatActivity {
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        DeviderItemDecoration itemDecoration = new DeviderItemDecoration(this, layoutManager.getOrientation());
         binding.cartList.setLayoutManager(layoutManager);
-        binding.cartList.addItemDecoration(itemDecoration);
         binding.cartList.setAdapter(adapter);
 
         binding.subtotal.setText(String.format("INR %.2f", cart.getTotalPrice()));
 
+        binding.continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CartActivity.this, CheckoutActivity.class));
 
-
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

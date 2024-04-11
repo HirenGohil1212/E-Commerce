@@ -2,6 +2,8 @@ package com.example.e_commerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.android.volley.Request;
@@ -16,6 +18,8 @@ import com.example.e_commerce.databinding.ActivityMainBinding;
 import com.example.e_commerce.model.Category;
 import com.example.e_commerce.model.Product;
 import com.example.e_commerce.utils.Constants;
+import com.mancj.materialsearchbar.MaterialSearchBar;
+
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     CategoryAdapter categoryAdapter;
     ArrayList<Category> categories;
-
-
     ProductAdapter productAdapter;
     ArrayList<Product> products;
 
@@ -37,6 +39,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                intent.putExtra("query", text.toString());
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+
+            }
+        });
 
         initCategories();
         initProducts();
@@ -124,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
                                 childObj.getDouble("price"),
                                 childObj.getDouble("price_discount"),
                                 childObj.getInt("stock"),
-                                childObj.getInt("id")
+                                childObj.getInt("id"),
+                                childObj.getInt("qunatity")
 
                         );
                         products.add(product);
